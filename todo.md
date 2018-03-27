@@ -1,0 +1,20 @@
+# Generators
+- Classic-style app
+- Modular-style app
+- RSpec
+- Webpack
+- CSS frameworks
+  - Bulma
+  - Bootstrap
+  - Foundation
+  - SemanticUI
+- Front-end frameworks
+  - React
+  - Vue
+  - Elm
+- ActiveRecord
+- Other ORMs?
+  - MongoDB
+- Other testing?
+  - Minitest
+  - Javscript
