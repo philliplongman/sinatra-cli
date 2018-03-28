@@ -1,6 +1,9 @@
 # Generators
 - Exit on failure
 - Modular-style app
+- Template languages
+  - Haml
+  - Slim
 - Tests
 - git repo
 - RSpec
