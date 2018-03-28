@@ -1,6 +1,8 @@
 # Generators
-- Classic-style app
+- Exit on failure
 - Modular-style app
+- Tests
+- git repo
 - RSpec
 - Webpack
 - CSS frameworks
@@ -8,10 +10,12 @@
   - Bootstrap
   - Foundation
   - SemanticUI
+- Force overwrite option
 - Front-end frameworks
   - React
   - Vue
   - Elm
+- Sinatra console
 - ActiveRecord
 - Other ORMs?
   - MongoDB
