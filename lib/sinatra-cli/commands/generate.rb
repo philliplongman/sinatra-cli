@@ -38,7 +38,6 @@ module SinatraCli::Commands::Generate
       SAY
     end
 
-
   end
 
 end
