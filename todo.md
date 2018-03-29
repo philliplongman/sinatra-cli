@@ -1,8 +1,4 @@
 # Generators
-- Exit on failure
-- Git
-  - init repo
-  - make .gitignore (take out of templates)
 - Template languages
   - Haml
   - Slim
