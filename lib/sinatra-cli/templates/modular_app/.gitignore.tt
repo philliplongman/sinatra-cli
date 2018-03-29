@@ -1,6 +1,27 @@
-/.bundle
-/.cache
-/.env
-/.sass-cache
-/node_modules
+# Bundler configuration
+.bundle
+
+# Local environmental variables
+.env
+
+# Front-end dependencies
+node_modules
+.yarn-integrity
+elm-stuff
+repl-temp-*
+
+# Caches
+.cache
+.sass-cache
+
+# Temp and log files
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Desktop Services Store on macOS
 .DS_Store

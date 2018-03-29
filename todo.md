@@ -8,20 +8,21 @@
   - Slim
 - Write tests
 - RSpec
+- Fix absent Sinatra request trace
+- Force overwrite option
+- Sinatra console
+- ActiveRecord
 - Webpack
 - CSS frameworks
   - Bulma
   - Bootstrap
   - Foundation
   - SemanticUI
-- Fix absent Sinatra request trace
-- Force overwrite option
 - Front-end frameworks
+  - Stimulus
   - React
   - Vue
   - Elm
-- Sinatra console
-- ActiveRecord
 - Better approach to server command?
 - Other ORMs?
   - MongoDB
