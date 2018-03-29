@@ -20,6 +20,25 @@ module SinatraCli::Commands::Generate
       end
     end
 
+    # MODULAR ------------------------------------------------------------------
+    desc "modular", "Generate a modular-style Sinatra app"
+
+    def modular
+      app = ModularApp.new(self).generate
+      command = set_color("sinatra server", :cyan)
+      say <<~SAY
+
+        Success! Created #{app.camelized_name} at #{Dir.pwd}.
+        To get started, run the command
+
+            #{command}
+
+        and visit localhost:3000 in your browser.
+        For more information, check out the generated readme.
+
+      SAY
+    end
+
     # CLASSIC ------------------------------------------------------------------
     desc "classic", "Generate a classic-style Sinatra app"
 
