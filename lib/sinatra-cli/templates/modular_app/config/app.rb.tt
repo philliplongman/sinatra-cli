@@ -1,0 +1,36 @@
+# This file is loaded first and loads all the other files needed to run the app.
+# Configuration for Sinatra should happen here to keep the main "app.rb" file
+# focused on routing/controller logic.
+#
+require "rubygems"
+require "bundler"
+require "sinatra/base"
+
+# Require all gems from the Gemfile for the current environment
+Bundler.require(:default, Sinatra::Base.environment)
+
+# Load ENV variables from .dotenv file
+Dotenv.load
+
+# Allow ERB files to have filetype .erb or .html.erb
+Tilt.register Tilt::ERBTemplate, "html.erb"
+
+module <%= config[:app_name] %>
+  class App < Sinatra::Base
+    configure do
+      # Use Puma instead of Sinatra's built-in server
+      set :server, :puma
+      # Tell Sinatra to look for Views and Public files in "./app"
+      set :root, File.join(".", "app")
+    end
+
+    configure :development do
+      # Use BetterErrors for debugging
+      use BetterErrors::Middleware
+      BetterErrors.application_root = __dir__
+    end
+  end
+end
+
+# Require all files in "./app"
+require_all "app"

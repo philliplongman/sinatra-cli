@@ -1,0 +1,15 @@
+module <%= config[:app_name] %>
+  class App < Sinatra::Base
+
+    get "/" do
+      @name = "world"
+      erb :index
+    end
+
+    get "/:name" do
+      @name = params["name"]
+      erb :index
+    end
+
+  end
+end
