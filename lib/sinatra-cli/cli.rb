@@ -11,9 +11,12 @@ require "sinatra-cli/commands"
 
 module SinatraCli
   class Cli < Thor
+    include Thor::Actions
+
     # Import commands from discrete files
     include Commands::New
     include Commands::Generate
+    include Commands::Server
 
   end
 end
