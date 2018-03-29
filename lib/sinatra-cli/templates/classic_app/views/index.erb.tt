@@ -2,12 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title><%= config[:name] %></title>
+    <title><%= config[:app_name] %></title>
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body>
     <h1>
-      <%%= "Hello, #{@name}!" %>
+      Hello, <%%= @name %>!
     </h1>
   </body>
   <script src="/js/app.js" charset="utf-8"></script>
