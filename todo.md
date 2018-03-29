@@ -1,11 +1,12 @@
 # Generators
 - Exit on failure
-- Modular-style app
+- Git
+  - init repo
+  - make .gitignore (take out of templates)
 - Template languages
   - Haml
   - Slim
-- Tests
-- git repo
+- Write tests
 - RSpec
 - Webpack
 - CSS frameworks
@@ -13,6 +14,7 @@
   - Bootstrap
   - Foundation
   - SemanticUI
+- Fix absent Sinatra request trace
 - Force overwrite option
 - Front-end frameworks
   - React
@@ -20,6 +22,7 @@
   - Elm
 - Sinatra console
 - ActiveRecord
+- Better approach to server command?
 - Other ORMs?
   - MongoDB
 - Other testing?
