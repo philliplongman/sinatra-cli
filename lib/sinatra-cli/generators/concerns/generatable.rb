@@ -47,6 +47,9 @@ module SinatraCli::Generators
         gemfile = "BUNDLE_GEMFILE=#{Dir.pwd}/Gemfile"
         thor.run "#{gemfile} bundler install"
       end
+      end
+
+
     end
 
   end
