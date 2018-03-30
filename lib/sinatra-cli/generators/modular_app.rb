@@ -1,6 +1,7 @@
 module SinatraCli::Generators
   class ModularApp
     include Generatable
+    include Gemable
     include Templatable
 
     attr_reader :cli, :app_path, :view_language

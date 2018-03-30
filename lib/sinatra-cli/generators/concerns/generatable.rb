@@ -3,33 +3,16 @@ module SinatraCli::Generators
     extend ActiveSupport::Concern
 
     included do
-      def camelized_name
-        @camelized_name ||= underscored_name.camelize
+      def path_name
+        File.basename(app_path)
       end
 
       def underscored_name
-        @underscored_name ||= File.basename(app_path).underscore
+        @underscored_name ||= path_name.underscore
       end
 
-      private
-
-      def bundle_gems
-        gemfile = "BUNDLE_GEMFILE=#{Dir.pwd}/Gemfile"
-        cli.run "#{gemfile} bundle install"
-      end
-
-      # Stolen from Bundler
-      def which(executable)
-        if File.file?(executable) && File.executable?(executable)
-          executable
-        elsif paths = ENV["PATH"]
-          quote = '"'.freeze
-          paths.split(File::PATH_SEPARATOR).find do |path|
-            path = path[1..-2] if path.start_with?(quote) && path.end_with?(quote)
-            executable_path = File.expand_path(executable, path)
-            return executable_path if File.file?(executable_path) && File.executable?(executable_path)
-          end
-        end
+      def camelized_name
+        @camelized_name ||= underscored_name.camelize
       end
     end
 
