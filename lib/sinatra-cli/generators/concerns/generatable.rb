@@ -14,6 +14,18 @@ module SinatraCli::Generators
       def camelized_name
         @camelized_name ||= underscored_name.camelize
       end
+
+      def replace_readme_section(section, with_text:)
+        cli.gsub_file readme, match_readme_section(section), with_text
+      end
+
+      def match_readme_section(section)
+        /(?<=<!-- #{section} -->\n).*(?=<!-- #{section} -->)/m
+      end
+
+      def readme
+        "#{app_path}/readme.md"
+      end
     end
 
   end

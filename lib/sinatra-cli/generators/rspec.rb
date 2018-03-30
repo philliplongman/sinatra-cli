@@ -20,6 +20,7 @@ module SinatraCli::Generators
       copy_templates_to app_path, config
       add_gems test_gems, group: :test
       bundle_gems
+      replace_readme_section :testing, with_text: readme_text
       self
     end
 
@@ -32,6 +33,16 @@ module SinatraCli::Generators
         gem "launchy"
         gem "rspec"
       GEMS
+    end
+
+    def readme_text
+      <<~README
+        RSpec and Capybara are installed for testing. Write your tests in the `spec` directory and end the filenames with `_spec`. To run your tests, use the command
+        ```
+        $ rspec
+        ```
+        You can write helper methods in `spec/support/test_helper.rb`, and your tests will automatically have access to them.
+      README
     end
 
   end

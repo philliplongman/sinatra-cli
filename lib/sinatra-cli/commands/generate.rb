@@ -10,16 +10,6 @@ module SinatraCli::Commands::Generate
     include Thor::Actions
     include SinatraCli::Generators
 
-    no_commands do
-      def self.source_root
-        File.expand_path "../templates", File.dirname(__FILE__)
-      end
-
-      def templates_folder
-        self.class.source_root
-      end
-    end
-
     # MODULAR ------------------------------------------------------------------
     desc "modular [options]", "Generate a modular-style Sinatra app"
 
@@ -78,7 +68,19 @@ module SinatraCli::Commands::Generate
       SAY
     end
 
-    private # ------------------------------------------------------------------
+    # Internal methods ---------------------------------------------------------
+
+    no_commands do
+      def self.source_root
+        File.expand_path "../templates", File.dirname(__FILE__)
+      end
+
+      def templates_folder
+        self.class.source_root
+      end
+    end
+
+    private
 
     def parse_view_options
       options[:view_language] = options[:haml] || options[:slim] || "erb"
