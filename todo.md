@@ -1,13 +1,12 @@
 # Generators
-- Template languages
-  - Haml
-  - Slim
-- Write tests
+- Documentation
+- readme
 - RSpec
 - Fix absent Sinatra request trace
-- Force overwrite option
+- Write tests
 - Sinatra console
 - ActiveRecord
+  - theres some stuff in rails_helper & spec_helper to look at
 - Webpack
 - CSS frameworks
   - Bulma
@@ -19,6 +18,7 @@
   - React
   - Vue
   - Elm
+- Generate Gemfile procedurally to include version number
 - Better approach to server command?
 - Other ORMs?
   - MongoDB
