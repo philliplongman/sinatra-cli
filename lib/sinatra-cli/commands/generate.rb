@@ -34,7 +34,7 @@ module SinatraCli::Commands::Generate
       say <<~SAY
 
         Success! Created #{app.camelized_name} at #{Dir.pwd}.
-        To get started, run the command
+        To get started, use the command
 
             #{command}
 
@@ -53,7 +53,7 @@ module SinatraCli::Commands::Generate
       say <<~SAY
 
         Success! Created #{app.camelized_name} at #{Dir.pwd}.
-        To get started, run the command
+        To get started, use the command
 
             #{command}
 
@@ -62,7 +62,23 @@ module SinatraCli::Commands::Generate
       SAY
     end
 
-    private
+    # RSpec --------------------------------------------------------------------
+    desc "rspec", "Generate an RSpec installation"
+
+    def rspec
+      app = RSpec.new(cli: self).generate
+      command = set_color("rspec", :cyan)
+      say <<~SAY
+
+        Success! RSpec and Capybara have been installed. Put your tests in #{app.underscored_name}/spec/
+        To run your them, use the command
+
+            #{command}
+
+      SAY
+    end
+
+    private # ------------------------------------------------------------------
 
     def parse_view_options
       options[:view_language] = options[:haml] || options[:slim] || "erb"
