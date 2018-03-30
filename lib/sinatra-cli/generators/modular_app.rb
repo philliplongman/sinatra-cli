@@ -16,8 +16,15 @@ module SinatraCli::Generators
 
     def generate
       copy_templates_to app_path, config
+      generate_views
       bundle_gems
       self
+    end
+
+    private
+
+    def generate_views
+      Views.new(cli: cli, app_path: app_path).generate
     end
 
   end
