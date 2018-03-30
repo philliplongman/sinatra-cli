@@ -3,8 +3,10 @@ require "require_all"
 module SinatraCli
   ROOT = File.join(__dir__, "sinatra-cli")
 
-  def root
-    ROOT
+  class << self
+    def root
+      ROOT
+    end
   end
 end
 
