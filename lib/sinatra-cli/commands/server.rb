@@ -4,17 +4,16 @@ module SinatraCli::Commands::Server
   included do
     desc "server [options]", "Start the server for the current directory"
 
-    option "no-rerun",
-      aliases: "-r",
-      banner: "",
-      desc: "Start the server without Rerun"
+    option "--no-rerun",
+      aliases: "-n",
+      desc: "Don't reload changed files with Rerun"
 
     def server
       raise Thor::Error, "No config.ru file" unless File.exist? "config.ru"
 
       gemfile = "BUNDLE_GEMFILE=#{Dir.pwd}/Gemfile"
 
-      if options["no-rerun"]
+      if options.key? "no-rerun"
         exec "#{gemfile} bundle exec puma"
       else
         exec "#{gemfile} bundle exec rerun puma"
