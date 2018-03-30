@@ -18,10 +18,20 @@ module SinatraCli::Generators
 
     def generate
       copy_templates_to app_path, config
-      add_gems_to_group :test,
-        :launchy, :rspec, :fuubar, capybara: { require: "capybara/rspec" }
+      add_gems test_gems, group: :test
       bundle_gems
       self
+    end
+
+    private
+
+    def test_gems
+      <<~GEMS
+        gem "capybara", require: "capybara/rspec"
+        gem "fuubar"
+        gem "launchy"
+        gem "rspec"
+      GEMS
     end
 
   end
