@@ -1,0 +1,9 @@
+module <%= config[:app_name] %>
+  module TestHelper
+
+    def open!
+      save_and_open_page
+    end
+
+  end
+end

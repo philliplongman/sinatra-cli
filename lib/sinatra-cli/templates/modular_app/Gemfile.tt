@@ -8,11 +8,20 @@ gem "activesupport", require: "active_support/all"
 gem "dotenv"
 gem "puma"
 gem "require_all"
-<%= %(gem "#{config[:view_language]}") unless config[:view_language] == "erb" %>
+<%= %(gem "#{config[:view_language]}"\n) unless config[:view_language] == "erb" %>
+group :development do
+end
 
 group :development, :test do
+  gem "awesome_print"
   gem "better_errors"
   gem "binding_of_caller"
   gem "pry"
   gem "rerun"
+end
+
+group :test do
+end
+
+group :production do
 end

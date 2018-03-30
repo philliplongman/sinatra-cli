@@ -1,0 +1,10 @@
+ENV["RACK_ENV"] ||= "test"
+
+require File.expand_path('../config/app', __dir__)
+require_rel "support"
+
+RSpec.configure do |config|
+  config.include <%= config[:app_name] %>::TestHelper
+
+  Capybara.app = <%= config[:app_name] %>::App
+end

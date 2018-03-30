@@ -1,0 +1,5 @@
+# Make ap method available in pry
+require "awesome_print"
+
+# Make awesome_print the default in pry
+AwesomePrint.pry!

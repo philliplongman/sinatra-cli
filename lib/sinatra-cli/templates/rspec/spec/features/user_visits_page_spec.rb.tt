@@ -1,0 +1,13 @@
+feature "user visits page" do
+
+  scenario "user visits root" do
+    visit "/"
+    expect(page).to have_content "Hello, world!"
+  end
+
+  scenario "user enters a name" do
+    visit "/Bob"
+    expect(page).to have_content "Hello, Bob!"
+  end
+
+end
