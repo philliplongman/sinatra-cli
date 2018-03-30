@@ -8,6 +8,7 @@ gem "activesupport", require: "active_support/all"
 gem "dotenv"
 gem "puma"
 gem "require_all"
+<%= %(gem "#{config[:view_language]}") unless config[:view_language] == "erb" %>
 
 group :development, :test do
   gem "better_errors"

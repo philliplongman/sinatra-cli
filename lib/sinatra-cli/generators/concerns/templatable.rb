@@ -14,20 +14,23 @@ module SinatraCli::Generators
       def templates
         glob = Dir.glob("**/*", File::FNM_DOTMATCH, base: template_dir)
 
-        template_files = glob.reject do |name|
-          File.directory? File.join(template_dir, name)
+        template_files = glob.reject do |path|
+          File.directory? File.join(template_dir, path)
         end
 
-        destinations = template_files.map do |name|
-          name.remove(".tt").gsub("projectname", underscored_name)
+        destinations = template_files.map do |path|
+          path.remove(".tt").gsub("projectname", underscored_name)
         end
 
         template_files.zip(destinations).to_h
       end
 
       def template_dir
-        @template_dir ||=
-          File.join cli.templates_folder, self.class.name.demodulize.underscore
+        @template_dir ||= File.join cli.templates_folder, template_name
+      end
+
+      def template_name
+        @template_name ||= self.class.name.demodulize.underscore
       end
     end
 

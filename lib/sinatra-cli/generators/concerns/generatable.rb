@@ -15,7 +15,7 @@ module SinatraCli::Generators
 
       def bundle_gems
         gemfile = "BUNDLE_GEMFILE=#{Dir.pwd}/Gemfile"
-        cli.run "#{gemfile} bundler install"
+        cli.run "#{gemfile} bundle install"
       end
 
       # Stolen from Bundler

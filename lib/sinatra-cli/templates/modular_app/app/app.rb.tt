@@ -3,12 +3,12 @@ module <%= config[:app_name] %>
 
     get "/" do
       @name = "world"
-      erb :index
+      <%= config[:view_language] %> :index
     end
 
     get "/:name" do
       @name = params["name"]
-      erb :index
+      <%= config[:view_language] %> :index
     end
 
   end

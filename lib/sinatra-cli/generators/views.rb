@@ -3,13 +3,13 @@ module SinatraCli::Generators
     include Generatable
     include Templatable
 
-    attr_reader :cli, :app_path, :views_path, :template_dir
+    attr_reader :cli, :app_path, :views_path, :template_name
 
-    def initialize(cli:, app_path: Dir.pwd, views_path: "app", template_dir: "erb_views")
+    def initialize(cli:, app_path: Dir.pwd, views_path: "app")
       @cli = cli
       @app_path = app_path
       @views_path = views_path
-      @template_dir = template_dir
+      @template_name = cli.options[:view_language] + "_views"
     end
 
     def config

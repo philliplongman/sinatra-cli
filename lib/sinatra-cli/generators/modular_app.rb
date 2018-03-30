@@ -3,15 +3,16 @@ module SinatraCli::Generators
     include Generatable
     include Templatable
 
-    attr_reader :cli, :app_path
+    attr_reader :cli, :app_path, :view_language
 
     def initialize(cli:, app_path: Dir.pwd)
       @cli = cli
       @app_path = app_path
+      @view_language = cli.options[:view_language]
     end
 
     def config
-      { app_name: camelized_name }
+      { app_name: camelized_name, view_language: view_language }
     end
 
     def generate
