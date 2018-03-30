@@ -1,7 +1,6 @@
 # Generators
 - Documentation
 - readme
-- RSpec
 - Fix absent Sinatra request trace
 - Write tests
 - Sinatra console
