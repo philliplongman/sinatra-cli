@@ -10,7 +10,7 @@ module SinatraCli::Generators
     end
 
     def generate
-      thor.run "git init" if git_present?
+      cli.run "git init" if git_present?
       self
     end
 
@@ -19,7 +19,7 @@ module SinatraCli::Generators
     # Stolen from Bundler
     def git_present?
       return @git_present if defined? @git_present
-      @git_present = which("git") || which("git.exe")
+      @git_present = cli.which("git") || cli.which("git.exe")
     end
 
   end
