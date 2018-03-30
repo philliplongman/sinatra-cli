@@ -24,7 +24,7 @@ module SinatraCli::Commands::Generate
     desc "modular", "Generate a modular-style Sinatra app"
 
     def modular
-      app = ModularApp.new(self).generate
+      app = ModularApp.new(cli: self).generate
       command = set_color("sinatra server", :cyan)
       say <<~SAY
 
@@ -43,7 +43,7 @@ module SinatraCli::Commands::Generate
     desc "classic", "Generate a classic-style Sinatra app"
 
     def classic
-      app = ClassicApp.new(self).generate
+      app = ClassicApp.new(cli: self).generate
       command = set_color("ruby #{app.underscored_name}.rb", :cyan)
       say <<~SAY
 
