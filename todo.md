@@ -1,7 +1,7 @@
 # Generators
-- Documentation
 - readme
-- Fix absent Sinatra request trace
+- Project generator
+- Documentation
 - Write tests
 - Sinatra console
 - ActiveRecord
@@ -17,10 +17,10 @@
   - React
   - Vue
   - Elm
-- Generate Gemfile procedurally to include version number
+- Fix absent Sinatra request trace
 - Better approach to server command?
 - Other ORMs?
   - MongoDB
 - Other testing?
   - Minitest
-  - Javscript
+  - Javascript
