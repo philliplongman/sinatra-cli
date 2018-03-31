@@ -6,23 +6,25 @@ module SinatraCli::Generators
       private
 
       def copy_templates_to(destination_dir, **config)
-        templates.each do |src, dst|
+        templates_hash.each do |src, dst|
           cli.template("#{template_dir}/#{src}", "#{destination_dir}/#{dst}", config)
         end
       end
 
-      def templates
-        glob = Dir.glob("**/*", File::FNM_DOTMATCH, base: template_dir)
-
-        template_files = glob.reject do |path|
-          File.directory? File.join(template_dir, path)
-        end
-
-        destinations = template_files.map do |path|
-          path.remove(".tt").gsub("projectname", underscored_name)
-        end
+      def templates_hash
+        destinations = template_files.map { |e| rename_template(e) }
 
         template_files.zip(destinations).to_h
+      end
+
+      def template_files
+        Dir.glob("**/*", File::FNM_DOTMATCH, base: template_dir).reject do |path|
+          File.directory? File.join(template_dir, path)
+        end
+      end
+
+      def rename_template(path)
+        path.remove(".tt").gsub("projectname", underscored_name)
       end
 
       def template_dir
