@@ -7,6 +7,7 @@ module SinatraCli::Generators
     def initialize(cli:, app_path: Dir.pwd)
       @cli = cli
       @app_path = app_path
+      destination_root = app_path
     end
 
     def generate

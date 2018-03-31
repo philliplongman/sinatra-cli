@@ -1,13 +1,13 @@
 module SinatraCli::Generators
   class ClassicApp
     include Generatable
-    include Templatable
 
     attr_reader :cli, :app_path
 
     def initialize(cli:, app_path: Dir.pwd)
       @cli = cli
       @app_path = app_path
+      destination_root = app_path
     end
 
     def config
@@ -15,8 +15,12 @@ module SinatraCli::Generators
     end
 
     def generate
-      copy_templates_to app_path, config
+      copy_templates
       self
+    end
+
+    def projectname
+      underscored_name
     end
 
   end

@@ -1,7 +1,6 @@
 module SinatraCli::Generators
   class Views
     include Generatable
-    include Templatable
 
     attr_reader :cli, :app_path, :views_path, :template_name
 
@@ -10,6 +9,7 @@ module SinatraCli::Generators
       @app_path = app_path
       @views_path = views_path
       @template_name = cli.view_language + "_views"
+      destination_root = app_path
     end
 
     def config
@@ -17,7 +17,7 @@ module SinatraCli::Generators
     end
 
     def generate
-      copy_templates_to File.join(app_path, views_path), config
+      copy_templates from: template_name, to: views_path
       self
     end
 

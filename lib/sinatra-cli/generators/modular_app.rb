@@ -2,22 +2,21 @@ module SinatraCli::Generators
   class ModularApp
     include Generatable
     include Gemable
-    include Templatable
 
-    attr_reader :cli, :app_path, :view_language
+    attr_reader :cli, :app_path
 
     def initialize(cli:, app_path: Dir.pwd)
       @cli = cli
       @app_path = app_path
-      @view_language = cli.view_language
+      destination_root = app_path
     end
 
     def config
-      { app_name: camelized_name, view_language: view_language }
+      { app_name: camelized_name, view_language: cli.view_language }
     end
 
     def generate
-      copy_templates_to app_path, config
+      copy_templates
       generate_views
       bundle_gems
       self

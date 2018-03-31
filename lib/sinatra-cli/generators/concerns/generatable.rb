@@ -15,6 +15,10 @@ module SinatraCli::Generators
         @app_path_name ||= File.basename app_path
       end
 
+      def copy_templates(from: self.class.name.demodulize.underscore, to: ".")
+        cli.directory from, to, config
+      end
+
       def replace_readme_section(section, with_text:)
         cli.gsub_file readme, match_readme_section(section), with_text
       end

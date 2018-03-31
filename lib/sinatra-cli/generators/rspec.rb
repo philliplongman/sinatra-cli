@@ -2,14 +2,14 @@ module SinatraCli::Generators
   class RSpec
     include Generatable
     include Gemable
-    include Templatable
 
     attr_reader :cli, :app_path, :template_name
 
-    def initialize(cli:, app_path: Dir.pwd, template_name: "rspec")
+    def initialize(cli:, app_path: Dir.pwd, tests_path: "spec")
       @cli = cli
       @app_path = app_path
-      @template_name = template_name
+      @template_name = "rspec"
+      destination_root = app_path
     end
 
     def config
@@ -17,7 +17,7 @@ module SinatraCli::Generators
     end
 
     def generate
-      copy_templates_to app_path, config
+      copy_templates from: template_name
       add_gems test_gems, group: :test
       bundle_gems
       replace_readme_section :testing, with_text: readme_text

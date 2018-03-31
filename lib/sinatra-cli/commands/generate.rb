@@ -71,11 +71,7 @@ module SinatraCli::Commands::Generate
 
     no_commands do
       def self.source_root
-        File.expand_path "../templates", File.dirname(__FILE__)
-      end
-
-      def templates_folder
-        self.class.source_root
+        File.join(SinatraCli.root, "templates")
       end
 
       def view_language
