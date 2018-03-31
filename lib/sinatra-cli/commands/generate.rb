@@ -18,7 +18,6 @@ module SinatraCli::Commands::Generate
     option :slim, banner: "", desc: "Use Slim for views, instead of ERB."
 
     def modular
-      parse_view_options
       app = ModularApp.new(cli: self).generate
       command = set_color("sinatra server", :cyan)
       say <<~SAY
@@ -78,12 +77,10 @@ module SinatraCli::Commands::Generate
       def templates_folder
         self.class.source_root
       end
-    end
 
-    private
-
-    def parse_view_options
-      options[:view_language] = options[:haml] || options[:slim] || "erb"
+      def view_language
+        @view_language ||= options[:haml] || options[:slim] || "erb"
+      end
     end
 
   end

@@ -3,16 +3,16 @@ module SinatraCli::Generators
     extend ActiveSupport::Concern
 
     included do
-      def path_name
-        File.basename(app_path)
-      end
-
       def underscored_name
-        @underscored_name ||= path_name.underscore
+        @underscored_name ||= app_path_name.underscore
       end
 
       def camelized_name
         @camelized_name ||= underscored_name.camelize
+      end
+
+      def app_path_name
+        @app_path_name ||= File.basename app_path
       end
 
       def replace_readme_section(section, with_text:)

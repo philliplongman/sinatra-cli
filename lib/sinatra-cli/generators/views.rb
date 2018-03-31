@@ -9,7 +9,7 @@ module SinatraCli::Generators
       @cli = cli
       @app_path = app_path
       @views_path = views_path
-      @template_name = cli.options[:view_language] + "_views"
+      @template_name = cli.view_language + "_views"
     end
 
     def config

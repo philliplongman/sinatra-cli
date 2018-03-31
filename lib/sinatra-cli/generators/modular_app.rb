@@ -9,7 +9,7 @@ module SinatraCli::Generators
     def initialize(cli:, app_path: Dir.pwd)
       @cli = cli
       @app_path = app_path
-      @view_language = cli.options[:view_language]
+      @view_language = cli.view_language
     end
 
     def config
