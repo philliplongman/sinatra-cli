@@ -8,9 +8,9 @@ require "thor/actions"
 
 # Internal files
 require_rel "sinatra-cli/version"
-require_rel "sinatra-cli/cli"
 require_rel "sinatra-cli/generators/concerns"
 require_rel "sinatra-cli/generators"
+require_rel "sinatra-cli/cli"
 require_rel "sinatra-cli/main"
 require_rel "sinatra-cli/commands"
 
