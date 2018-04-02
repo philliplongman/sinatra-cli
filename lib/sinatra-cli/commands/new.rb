@@ -1,7 +1,6 @@
-module SinatraCli::Commands::New
-  extend ActiveSupport::Concern
+module SinatraCli
+  class Main < Cli
 
-  included do
     desc "new APP_PATH [options]", "Create a modular-style Sinatra app in APP_PATH"
 
     option :classic,
@@ -11,6 +10,6 @@ module SinatraCli::Commands::New
     def new(dir)
       Project.new(dir, options).build
     end
-  end
 
+  end
 end

@@ -1,14 +1,12 @@
-module SinatraCli::Commands::Generate
-  extend ActiveSupport::Concern
-
-  included do
-    desc "generate ELEMENT", "Run generator to add ELEMENT to project"
-    subcommand "generate", Command
-  end
-
-  class Command < SinatraCli::Cli
+module SinatraCli
+  class Generate < SinatraCli::Cli
     include Thor::Actions
     include SinatraCli::Generators
+
+    Main.class_eval do
+      desc "generate ELEMENT [options]", "Run generator to add ELEMENT to project"
+      subcommand "generate", Generate
+    end
 
     # MODULAR ------------------------------------------------------------------
     desc "modular [options]", "Generate a modular-style Sinatra app"
@@ -68,5 +66,4 @@ module SinatraCli::Commands::Generate
     end
 
   end
-
 end
