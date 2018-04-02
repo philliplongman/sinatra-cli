@@ -1,7 +1,7 @@
 module SinatraCli
   class Generate < Cli
 
-    desc "classic", "Generate a classic-style Sinatra app"
+    desc "generate classic", "Generate a classic-style Sinatra app"
 
     def classic
       app = ClassicApp.new(cli: self).generate

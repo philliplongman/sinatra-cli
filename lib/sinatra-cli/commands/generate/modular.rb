@@ -1,11 +1,15 @@
 module SinatraCli
   class Generate < Cli
 
-    desc "modular [options]", "Generate a modular-style Sinatra app"
+    desc "generate modular [options]", "Generate a modular-style Sinatra app"
 
     option :erb,  hide: true
-    option :haml, banner: "", desc: "Use Haml for views, instead of ERB."
-    option :slim, banner: "", desc: "Use Slim for views, instead of ERB."
+
+    option :haml, banner: "",
+      desc: "Use Haml for views, instead of ERB."
+
+    option :slim, banner: "",
+      desc: "Use Slim for views, instead of ERB."
 
     def modular
       app = ModularApp.new(cli: self).generate

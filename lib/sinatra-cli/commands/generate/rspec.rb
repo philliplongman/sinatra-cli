@@ -1,7 +1,7 @@
 module SinatraCli
   class Generate < Cli
 
-    desc "rspec", "Generate an RSpec installation"
+    desc "generate rspec", "Generate an RSpec installation"
 
     def rspec
       app = RSpec.new(cli: self).generate
