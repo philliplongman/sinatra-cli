@@ -15,6 +15,12 @@ module SinatraCli::Generators
         @app_path_name ||= File.basename app_path
       end
 
+      def view_language
+        return "haml" if cli.options.key? :haml
+        return "slim" if cli.options.key? :slim
+        "erb"
+      end
+
       def copy_templates(from: self.class.name.demodulize.underscore, to: ".")
         cli.directory from, to, config
       end

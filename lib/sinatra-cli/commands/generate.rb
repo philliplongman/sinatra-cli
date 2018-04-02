@@ -73,10 +73,6 @@ module SinatraCli::Commands::Generate
       def self.source_root
         File.join(SinatraCli.root, "templates")
       end
-
-      def view_language
-        @view_language ||= options[:haml] || options[:slim] || "erb"
-      end
     end
 
   end

@@ -12,7 +12,7 @@ module SinatraCli::Generators
     end
 
     def config
-      { app_name: camelized_name, view_language: cli.view_language }
+      { app_name: camelized_name, view_language: view_language }
     end
 
     def generate

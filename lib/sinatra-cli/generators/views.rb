@@ -8,7 +8,7 @@ module SinatraCli::Generators
       @cli = cli
       @app_path = app_path
       @views_path = views_path
-      @template_name = cli.view_language + "_views"
+      @template_name = view_language + "_views"
       destination_root = app_path
     end
 
