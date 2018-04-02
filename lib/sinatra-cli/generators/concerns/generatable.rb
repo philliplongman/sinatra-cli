@@ -16,13 +16,17 @@ module SinatraCli
           @app_path_name ||= File.basename app_path
         end
 
+        def absolute_app_path
+          File.absolute_path app_path
+        end
+
         def view_language
           return "haml" if cli.options.key? :haml
           return "slim" if cli.options.key? :slim
           "erb"
         end
 
-        def copy_templates(from: self.class.name.demodulize.underscore, to: ".")
+        def copy_templates(from: self.class.name.demodulize.underscore, to: app_path)
           cli.directory from, to, config
         end
 

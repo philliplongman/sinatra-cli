@@ -8,7 +8,7 @@ module SinatraCli
       command = set_color("ruby #{app.underscored_name}.rb", :cyan)
       say <<~SAY
 
-        Success! Created #{app.camelized_name} at #{Dir.pwd}.
+        Success! Created #{app.camelized_name} at #{app.absolute_app_path}
         To get started, use the command
 
             #{command}

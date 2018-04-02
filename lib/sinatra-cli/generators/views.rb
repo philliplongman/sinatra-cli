@@ -18,7 +18,7 @@ module SinatraCli
       end
 
       def generate
-        copy_templates from: template_name, to: views_path
+        copy_templates from: template_name, to: File.join(app_path, views_path)
         self
       end
 

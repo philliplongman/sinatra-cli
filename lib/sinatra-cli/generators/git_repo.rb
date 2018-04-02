@@ -12,16 +12,20 @@ module SinatraCli
       end
 
       def generate
-        cli.run "git init" if git_present?
+        create_repo if git
         self
       end
 
       private
 
+      def create_repo
+        cli.inside(app_path) { cli.run "git init" }
+      end
+
       # Stolen from Bundler
-      def git_present?
-        return @git_present if defined? @git_present
-        @git_present = cli.which("git") || cli.which("git.exe")
+      def git
+        return @git if defined? @git
+        @git = cli.which("git") || cli.which("git.exe")
       end
 
     end
