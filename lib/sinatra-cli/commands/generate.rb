@@ -6,7 +6,7 @@ module SinatraCli::Commands::Generate
     subcommand "generate", Command
   end
 
-  class Command < Thor
+  class Command < SinatraCli::Cli
     include Thor::Actions
     include SinatraCli::Generators
 
@@ -65,14 +65,6 @@ module SinatraCli::Commands::Generate
             #{command}
 
       SAY
-    end
-
-    # Internal methods ---------------------------------------------------------
-
-    no_commands do
-      def self.source_root
-        File.join(SinatraCli.root, "templates")
-      end
     end
 
   end

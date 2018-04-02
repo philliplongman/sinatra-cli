@@ -19,6 +19,7 @@ require "thor/actions"
 
 # Internal files
 require "sinatra-cli/version"
+require "sinatra-cli/cli"
 require "sinatra-cli/generators"
 require "sinatra-cli/commands"
-require "sinatra-cli/cli"
+require "sinatra-cli/main"

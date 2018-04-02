@@ -2,4 +2,4 @@
 
 require "sinatra-cli"
 
-SinatraCli::Cli.start(ARGV)
+SinatraCli::Main.start(ARGV)

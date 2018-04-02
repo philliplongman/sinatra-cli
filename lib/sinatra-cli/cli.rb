@@ -2,14 +2,13 @@ module SinatraCli
   class Cli < Thor
     include Thor::Actions
 
-    # Import commands from discrete files
-    include Commands::New
-    include Commands::Generate
-    include Commands::Server
-
     class << self
       def exit_on_failure?
         true
+      end
+
+      def self.source_root
+        File.join(SinatraCli.root, "templates")
       end
     end
 
