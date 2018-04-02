@@ -1,8 +1,9 @@
 # Generators
-- readme
-- Project generator
 - Documentation
 - Write tests
+- readme for gem
+- first release
+- Don't allow unspecified abbreviation of commands (it causes errors with help)
 - Sinatra console
 - ActiveRecord
   - theres some stuff in rails_helper & spec_helper to look at
