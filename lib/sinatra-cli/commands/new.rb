@@ -14,6 +14,10 @@ module SinatraCli
     option :slim, banner: "",
       desc: "Use Slim for views, instead of ERB."
 
+    # Run the Project generator at `app_path` to create a new project with
+    # all of the default configurations (modified by any passed options).
+    # Print instructions about how to use the other gem commands.
+    #
     def new(app_path)
       app = Project.new(cli: self, app_path: app_path).generate
       say <<~SAY

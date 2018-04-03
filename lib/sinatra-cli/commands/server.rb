@@ -6,6 +6,8 @@ module SinatraCli
     option :no_rerun, aliases: "-n", banner: "",
       desc: "Don't reload changed files with Rerun"
 
+    # Start the server. Reloading files with Rerun is enabled by default.
+    # 
     def server
       raise Thor::Error, "No config.ru file" unless File.exist? "config.ru"
 

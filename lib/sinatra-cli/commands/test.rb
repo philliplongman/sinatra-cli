@@ -3,6 +3,8 @@ module SinatraCli
 
     desc "test [options] [files or directories]", "Start the test runner"
 
+    # Run the test suite. Args are passed to RSpec.
+    #
     def test(*args)
       gemfile = File.join(Dir.pwd, "/Gemfile")
       rspec_options = args.join(" ")
