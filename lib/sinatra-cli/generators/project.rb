@@ -38,15 +38,7 @@ module SinatraCli
       end
 
       def generators
-        @generators ||= [GitRepo, base_app, test_suite].compact
-      end
-
-      def base_app
-        classic? ? ClassicApp : ModularApp
-      end
-
-      def classic?
-        !!cli.options[:classic]
+        @generators ||= [GitRepo, ModularApp, test_suite].compact
       end
 
       def test_suite

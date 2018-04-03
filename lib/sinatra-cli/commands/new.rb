@@ -3,9 +3,6 @@ module SinatraCli
 
     desc "new APP_PATH [options]", "Create a modular-style Sinatra app in APP_PATH"
 
-    option :classic, banner: "",
-      desc: "Generate a bare-bones, classic-style project instead"
-
     option :skip_test, aliases: "-t", type: :boolean, banner: "",
       desc: "Don't generate an RSpec installation"
 
@@ -35,7 +32,7 @@ module SinatraCli
 
         We suggest that you begin by typing:
 
-            #{cmd :cd, app_path}#{cmd :server}
+            #{cmd :cd, path: app_path}#{cmd :server}
 
         and visiting localhost:3000 in your browser.
         For more information, check out the generated readme file.
