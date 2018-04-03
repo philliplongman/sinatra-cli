@@ -3,6 +3,12 @@ require_rel "concerns/generatable"
 module SinatraCli
   module Generators
     class Views
+      #
+      # Generator to create views. Modular project folder structure is
+      # assumed. Views can be created in ERB, Haml, and Slim formats.
+      #
+      # Hidden generator. Run by the ModularApp generator.
+      #
       include Generatable
 
       attr_reader :cli, :app_path, :views_path, :template_name

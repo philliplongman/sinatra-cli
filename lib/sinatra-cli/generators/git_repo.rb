@@ -3,6 +3,11 @@ require_rel "concerns/generatable"
 module SinatraCli
   module Generators
     class GitRepo
+      #
+      # Generator to initialize a git repo in new projects.
+      #
+      # Hidden generator. Run by the Project generator.
+      #
       include Generatable
 
       attr_reader :cli, :app_path
@@ -20,11 +25,14 @@ module SinatraCli
 
       private
 
+      # Initialize a git repo in app_path.
+      #
       def create_repo
         cli.inside(app_path) { cli.run "git init" }
       end
 
-      # Stolen from Bundler
+      # Check that `git` is present on the system before trying to use it.
+      #
       def git
         return @git if defined? @git
         @git = cli.which("git") || cli.which("git.exe")

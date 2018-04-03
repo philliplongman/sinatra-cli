@@ -4,6 +4,13 @@ require_rel "concerns/generatable"
 module SinatraCli
   module Generators
     class ModularApp
+      #
+      # Generator to produce a modular-style app. Environment is loaded
+      # from files in `config` folder. Business logic is contained in
+      # `app` folder. Reloading is configured. Gemfile is created.
+      #
+      # Exposed generator. Users can access it through the `generate` command.
+      #
       include Generatable
       include Gemable
 

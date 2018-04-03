@@ -4,6 +4,12 @@ require_rel "concerns/generatable"
 module SinatraCli
   module Generators
     class RSpec
+      #
+      # Generator to produce an RSpec installation. `spec` folder with
+      # `spec_helper.rb`, TestHelper module, and example tests is created.
+      #
+      # Exposed generator. Users can access it through the `generate` command.
+      #
       include Generatable
       include Gemable
 
