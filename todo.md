@@ -1,9 +1,9 @@
 # SinatraCli
 - Custom sort
+- Gemable module should probably be Gemfile class instead
 - Write tests
-- readme for gem
-- first release
-- Don't allow unspecified abbreviation of commands (it causes errors with help)
+- API option
+- Help doesn't display properly when called on mappings of subcommands
 - Sinatra console
 - ActiveRecord
   - theres some stuff in rails_helper & spec_helper to look at
