@@ -64,5 +64,26 @@ module SinatraCli
       end
     end
 
+    private
+
+    def cyan(text)
+      set_color text, :cyan
+    end
+
+    def cmd(command, path: nil)
+      case command
+      when :server
+        cyan("sinatra server")
+      when :classic_server
+        cyan("ruby #{path}")
+      when :test
+        [cyan("sinatra test"), "or", cyan("sinatra spec")].join(" ")
+      when :generate
+        cyan("sinatra generate")
+      when :cd
+        path == "." ? nil : cyan("cd #{path}\n    ")
+      end
+    end
+
   end
 end
