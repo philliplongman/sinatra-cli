@@ -11,15 +11,18 @@ module SinatraCli
     option :slim, banner: "",
       desc: "Use Slim for views, instead of ERB."
 
+    # Run the modular-style app generator in the current working directory,
+    # and output instructions how to start the result. ERB views will be
+    # assumed unless Slim or Haml is specified.
+    #
     def modular
       app = ModularApp.new(cli: self).generate
-      command = set_color("sinatra server", :cyan)
       say <<~SAY
 
-        Success! Created #{app.camelized_name} at #{Dir.pwd}.
+        Success! Created #{app.camelized_name} at #{app.absolute_app_path}.
         To get started, use the command
 
-            #{command}
+            #{cmd :server}
 
         and visit localhost:3000 in your browser.
         For more information, check out the generated readme.
