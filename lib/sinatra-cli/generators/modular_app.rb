@@ -28,12 +28,18 @@ module SinatraCli
 
       def generate
         copy_templates
+        add_view_language_gem
         generate_views
         bundle_gems
         self
       end
 
       private
+
+      def add_view_language_gem
+        return if view_language == "erb"
+        add_gems %(gem "#{view_language}")
+      end
 
       def generate_views
         Views.new(cli: cli, app_path: app_path).generate

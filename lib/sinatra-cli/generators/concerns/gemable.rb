@@ -35,15 +35,16 @@ module SinatraCli
           gems_code = gems_code.chomp << "\n"
 
           if group
-            add_to_group(group, gems_code)
+            _add_to_group(group, gems_code)
           else
-            add_to_default(gems_code)
+            _add_to_default(gems_code)
           end
         end
 
-        # Add text at the bottom of the default group
+        # Add text at the bottom of the default group.
+        # Not intended to be called directly.
         #
-        def add_to_default(gems_code)
+        def _add_to_default(gems_code)
           # starting the the top with "source", find the very last line
           # in the default group, before the gem "group"
           pattern = /(?:source).+?(?=\ngroup)/m
@@ -51,9 +52,10 @@ module SinatraCli
           cli.insert_into_file(gemfile, gems_code, after: pattern)
         end
 
-        # Add text to the bottom of the gem group
+        # Add text to the bottom of the gem group.
+        # Not intended to be called directly.
         #
-        def add_to_group(group, gems_code)
+        def _add_to_group(group, gems_code)
           # convert group to string formatted like `:development, :test`
           group_top = Array(group).join(", ").gsub(/\b(?=\w)/, ":")
           # find top of block under `group .. do` and `end`
