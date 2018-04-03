@@ -1,5 +1,3 @@
-require_rel "concerns/generatable"
-
 module SinatraCli
   module Generators
     class GitRepo
@@ -8,7 +6,6 @@ module SinatraCli
       #
       # Hidden generator. Run by the Project generator.
       # ---------------------------------------------------
-      include Generatable
 
       attr_reader :cli, :app_path
 

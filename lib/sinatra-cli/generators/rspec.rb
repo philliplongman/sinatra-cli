@@ -1,5 +1,5 @@
 require_rel "concerns/gemable"
-require_rel "concerns/generatable"
+require_rel "concerns/templatable"
 
 module SinatraCli
   module Generators
@@ -10,7 +10,7 @@ module SinatraCli
       #
       # Exposed generator. Users can access it through the `generate` command.
       # ----------------------------------------------------------------------
-      include Generatable
+      include Templatable
       include Gemable
 
       attr_reader :cli, :app_path, :template_name

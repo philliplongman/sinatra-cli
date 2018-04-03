@@ -4,11 +4,11 @@ require "active_support/core_ext/string/inflections"
 
 module SinatraCli
   module Generators
-    module Generatable
+    module Templatable
       extend ActiveSupport::Concern
-      # -------------------------------------------
-      # Methods for generating files from templates
-      # -------------------------------------------
+      # ----------------------------------------
+      # Methods for dealing with templates files
+      # ----------------------------------------
       included do
         # Return snake-case name of app.
         #

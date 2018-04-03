@@ -1,4 +1,4 @@
-require_rel "concerns/generatable"
+require_rel "concerns/templatable"
 
 module SinatraCli
   module Generators
@@ -9,7 +9,7 @@ module SinatraCli
       #
       # Hidden generator. Run by the ModularApp generator.
       # --------------------------------------------------------------
-      include Generatable
+      include Templatable
 
       attr_reader :cli, :app_path, :views_path, :template_name
 
