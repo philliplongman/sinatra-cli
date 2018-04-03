@@ -1,8 +1,8 @@
 # Sinatra CLI
 
-Sinatra's modular style is a great choice for lightweight web apps and simple APIs. That also makes it a great choice for coding exercises and learning about web development. But configuring a fleshed-out modular app can be over the head of a beginner (especially since many of the Sinatra recipes have become dated) and experienced programmers may miss the ease of having Rails take care of configuration so they can get to work.
+Sinatra's modular style is a great choice for lightweight web apps and simple APIs. That also makes it a great choice for coding exercises and learning about web development. But configuring a fleshed-out modular app can be over the head of a beginner (especially since many of the Sinatra recipes have become dated), and experienced programmers may miss the ease of having Rails take care of configuration so they can get to work.
 
-Sinatra CLI solves this problem with a lightly opinionated project generator. Starting a new Sinatra project is as simple as:
+Sinatra CLI solves this problem with a lightly opinionated project generator. Starting a new project is as simple as:
 ```
 $ sinatra new app_name
 ```
@@ -64,7 +64,7 @@ $ sinatra generate GENERATOR
 | classic     | Generate a classic-style Sinatra app  |
 | tests       | Generate an RSpec installation        |
 
-The `classic` generator creates a barebones classic-style app, suitable for those learning the very basics. It creates one ruby file, a `public` folder, a `views` folder, and no Gemfile. It is not intended to be run with other generators.
+The `classic` generator creates a barebones Sinatra app, suitable for those learning the very basics. It creates one ruby file, a `public` folder, a `views` folder, and no Gemfile. It is not intended to be run with other generators.
 
 To see the options for a generator, call the command with `--help` or `-h`.
 
@@ -89,15 +89,15 @@ $ sinatra test [arguments]
 Any arguments will be passed to the testing framework. Also aliased as `sinatra spec`.
 
 
-## Helping Develop Sinatra CLI
+## Contriuting to Sinatra CLI
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/philliplongman/sinatra-cli.
+
+### Setup
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/philliplongman/sinatra-cli.
+To install the gem onto your machine from the local files, run `bundle exec rake install`.
 
 ## License
 
