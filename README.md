@@ -1,28 +1,93 @@
-# SinatraCli
+# Sinatra CLI
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sinatra-cli`. To experiment with that code, run `bin/console` for an interactive prompt.
+Sinatra's modular style is a great choice for lightweight web apps and simple APIs. That also makes it a great choice for coding exercises and learning about web development. But configuring a fleshed-out modular app can be over the head of a beginner—especially since many of the Sinatra recipes have become dated—and experienced programmers may miss the ease of having Rails take care of the configuration so they can get to work.
 
-TODO: Delete this and the text above, and describe your gem
+Sinatra CLI solves this problem with a lightly opinionated project generator. Starting a new modular Sinatra app is as simple as:
+```
+$ sinatra new app_name
+```
+That starts a series of modular generators which create an app with default configuration, ready to start hacking on.
+
+## The Default
+
+The default configuration is a modular-style app with a Gemfile.
+
+- App and environment configuration is contained in the `config` folder. The main `app.rb` file and other business logic—as well as the `public` and `views` folders—is contained in the `app` folder.
+
+- [require_all](https://github.com/jarmo/require_all) should automatically load files in `app`, as long as they declare their dependencies.
+
+- [Rerun](https://github.com/alexch/rerun) is configured to reload the app when it detects changes to the `app` folder.
+
+- Environmental variables are handled by [dotenv](https://github.com/bkeepers/dotenv).
+
+- [ActiveSupport](http://guides.rubyonrails.org/active_support_core_extensions.html) is included in the Gemfile, giving access to Rails' extensions of the core Ruby libraries.
+
+- [Pry](https://github.com/pry/pry) and [Bettor Errors](https://github.com/charliesome/better_errors) are included to aid development.
+
+- [RSpec](https://relishapp.com/rspec) and [Capybara](https://teamcapybara.github.io/capybara/) are installed for testing, along with a `TestHelper` module to write test helpers in.
+
+More options and default features are planned, including Webpack, Javascript & CSS frameworks, and ActiveRecord.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'sinatra-cli'
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install sinatra-cli
+$ gem install sinatra-cli
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+To create a new app:
+
+```
+$ sinatra new APP_PATH
+```
+
+This can be modified with the following options:
+
+| Option            | Description                           |
+| ----------------- | ------------------------------------- |
+| --skip-test, -t   | Don't generate an RSpec installation  |
+| --haml            | Use Haml for views, instead of ERB    |
+| --slim            | Use Slim for views, instead of ERB    |
+
+You can view these options by calling the command with `--help` or `-h`.
+
+### Generators
+
+Most individual generators can be accessed to add specific elements à la carte. The folder structure from the modular app generator is assumed, and existing files may be overwritten (it will ask what to do).
+
+```
+$ sinatra generate GENERATOR
+```
+
+| Generator   | Description                           |
+| ----------- | ------------------------------------- |
+| modular     | Generate a modular-style Sinatra app  |
+| classic     | Generate a classic-style Sinatra app  |
+| tests       | Generate an RSpec installation        |
+
+To see the options for a generator, call the command with `--help` or `-h`.
+
+### Server
+
+Like other frameworks with a command line interface, Sinatra CLI can be used to start the server:
+
+```
+$ sinatra server
+```
+
+This can be called with `--no-reload` or `-r` to disable reloading.
+
+### Tests
+
+Sinatra CLI can also run the test suite:
+
+```
+$ sinatra test [arguments]
+```
+
+Any arguments will be passed to the testing framework. Also aliased as `sinatra spec`.
+
 
 ## Development
 
@@ -32,7 +97,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/sinatra-cli.
+Bug reports and pull requests are welcome on GitHub at https://github.com/philliplongman/sinatra-cli.
 
 ## License
 
