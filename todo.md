@@ -1,5 +1,5 @@
-# Generators
-- Documentation
+# SinatraCli
+- Custom sort
 - Write tests
 - readme for gem
 - first release
