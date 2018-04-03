@@ -1,3 +1,7 @@
+require "active_support/concern"
+require "active_support/core_ext/string/filters"
+require "active_support/core_ext/string/inflections"
+
 module SinatraCli
   module Generators
     module Generatable
@@ -16,6 +20,10 @@ module SinatraCli
           @app_path_name ||= File.basename app_path
         end
 
+        def generator_name
+          @generator_name ||= self.class.name.demodulize.underscore
+        end
+
         def absolute_app_path
           File.absolute_path app_path
         end
@@ -26,7 +34,7 @@ module SinatraCli
           "erb"
         end
 
-        def copy_templates(from: self.class.name.demodulize.underscore, to: app_path)
+        def copy_templates(from: generator_name, to: app_path)
           cli.directory from, to, config
         end
 

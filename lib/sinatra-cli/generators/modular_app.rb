@@ -1,3 +1,6 @@
+require_rel "concerns/gemable"
+require_rel "concerns/generatable"
+
 module SinatraCli
   module Generators
     class ModularApp

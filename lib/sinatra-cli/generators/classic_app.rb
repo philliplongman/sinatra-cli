@@ -1,3 +1,5 @@
+require_rel "concerns/generatable"
+
 module SinatraCli
   module Generators
     class ClassicApp

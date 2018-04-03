@@ -1,3 +1,5 @@
+require_rel "generators"
+
 module SinatraCli
   class Cli < Thor
     include Thor::Actions
@@ -37,7 +39,7 @@ module SinatraCli
           given_args.pop
           given_args.insert(-2, "help")
         end
-      
+
         super(meth, given_args, given_opts, config)
       end
     end
