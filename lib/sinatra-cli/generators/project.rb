@@ -3,12 +3,12 @@ require_rel "concerns/generatable"
 module SinatraCli
   module Generators
     class Project
-      #
+      # --------------------------------------------------------------------
       # Generator to produce a project with default configuration. App style
       # is modular. Gemfile, git repo, and RSpec installation are created.
       #
       # Exposed generator. Users can access it through the `new` command.
-      #
+      # --------------------------------------------------------------------
       include Generatable
 
       attr_reader :cli, :app_path

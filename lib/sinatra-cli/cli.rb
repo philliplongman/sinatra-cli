@@ -6,14 +6,24 @@ module SinatraCli
     include Generators
 
     class << self
+      # On failure, let the shell or parent process know that the process
+      # has failed.
+      #
       def exit_on_failure?
         true
       end
 
+      # Set folder where template files are located.
+      #
       def source_root
         File.join(SinatraCli.root, "templates")
       end
 
+      # Overwrite the Thor help command to remove the help command itself
+      # from the output. Instead let users know they can call the `--help`
+      # option after any command to get more information. This is more like
+      # most CLI apps.
+      #
       def help(shell, subcommand = false)
         list = printable_commands(true, subcommand)
         Thor::Util.thor_classes_in(self).each do |klass|
@@ -34,6 +44,10 @@ module SinatraCli
 
       protected
 
+      # Monkey patch the Thor#dispatch method to allow users to call
+      # `sinatra command --help` instead of `sinatra help command`,
+      # but feed it to Thor in the order it expects
+      #
       def dispatch(meth, given_args, given_opts, config)
         if given_args.last =~ /^(-h|--help)$/
           given_args.pop
@@ -47,7 +61,8 @@ module SinatraCli
     map %w(-h --help) => :help
 
     no_commands do
-      # Stolen from Bundler
+      # Stolen from Bundler. Call `which` for the given executable.
+      #
       def which(executable)
         if File.file?(executable) && File.executable?(executable)
           executable
@@ -66,10 +81,14 @@ module SinatraCli
 
     private
 
+    # Set text to output in cyan when output.
+    #
     def cyan(text)
       set_color text, :cyan
     end
 
+    # Return terminal command for shell output.
+    #
     def cmd(command, path: nil)
       case command
       when :server

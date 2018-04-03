@@ -6,11 +6,9 @@ module SinatraCli
   module Generators
     module Generatable
       extend ActiveSupport::Concern
-      #
       # -------------------------------------------
       # Methods for generating files from templates
       # -------------------------------------------
-      #
       included do
         # Return snake-case name of app.
         #

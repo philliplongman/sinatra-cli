@@ -4,11 +4,9 @@ module SinatraCli
   module Generators
     module Gemable
       extend ActiveSupport::Concern
-      #
       # -------------------------------------
       # Methods for interacting with Gemfiles
       # -------------------------------------
-      #
       included do
         private
 
