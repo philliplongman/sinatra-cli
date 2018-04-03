@@ -1,7 +1,7 @@
 module SinatraCli
   class Generate < Cli
 
-    desc "generate modular [options]", "Generate a modular-style Sinatra app"
+    desc "modular [options]", "Generate a modular-style Sinatra app"
 
     option :erb,  hide: true
 

@@ -30,7 +30,7 @@ or
 ```
 $ sinatra s
 ```
-To start the app without Rerun, use the `--no-rerun` or `-n` flag.
+To start the app without Rerun, use the `--no-reload` or `-n` flag.
 ```
-$ sinatra server --no-rerun
+$ sinatra server --no-reload
 ```

@@ -1,7 +1,7 @@
 module SinatraCli
   class Generate < Cli
 
-    desc "generate classic", "Generate a classic-style Sinatra app"
+    desc "classic", "Generate a classic-style Sinatra app"
 
     # Run the classic-style app generator in the current working directory,
     # and output instructions how to start the result.

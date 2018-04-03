@@ -1,7 +1,7 @@
 module SinatraCli
   class Main < Cli
 
-    desc "new APP_PATH [options]", "Create a modular-style Sinatra app in APP_PATH"
+    desc "new APP_PATH [options]", "Create a Sinatra app in APP_PATH with default configuration"
 
     option :skip_test, aliases: "-t", type: :boolean, banner: "",
       desc: "Don't generate an RSpec installation"
@@ -9,10 +9,10 @@ module SinatraCli
     option :erb, hide: true
 
     option :haml, banner: "",
-      desc: "Use Haml for views, instead of ERB."
+      desc: "Use Haml for views, instead of ERB"
 
     option :slim, banner: "",
-      desc: "Use Slim for views, instead of ERB."
+      desc: "Use Slim for views, instead of ERB"
 
     # Run the Project generator at `app_path` to create a new project with
     # all of the default configurations (modified by any passed options).

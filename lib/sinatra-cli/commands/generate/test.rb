@@ -1,7 +1,7 @@
 module SinatraCli
   class Generate < Cli
 
-    desc "generate tests", "Generate an RSpec installation"
+    desc "tests", "Generate an RSpec installation"
 
     # Run the RSpec generator in the current working directory, and output
     # instructions how to start the tests. RSpec is the only testing

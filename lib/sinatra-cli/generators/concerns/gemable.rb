@@ -57,7 +57,7 @@ module SinatraCli
           # convert group to string formatted like `:development, :test`
           group_top = Array(group).join(", ").gsub(/\b(?=\w)/, ":")
           # find top of block under `group .. do` and `end`
-          pattern = "group #{group_str} do\n"
+          pattern = "group #{group_top} do\n"
 
           # add padding to text
           gems_code.gsub!(/^/, "  ")
