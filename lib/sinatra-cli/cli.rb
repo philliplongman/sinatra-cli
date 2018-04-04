@@ -19,17 +19,20 @@ module SinatraCli
         File.join(SinatraCli.root, "templates")
       end
 
-      # Overwrite the Thor help command to remove the help command itself
-      # from the output. Instead let users know they can call the `--help`
-      # option after any command to get more information. This is more like
-      # most CLI apps.
+      # Overwrite the Thor help command to allow custom sorting and remove
+      # the help command itself from the output. Instead let users know
+      # they can call the `--help` option after any command to get more
+      # information. This is more like most CLI apps.
       #
       def help(shell, subcommand = false)
         list = printable_commands(true, subcommand)
         Thor::Util.thor_classes_in(self).each do |klass|
           list += klass.printable_commands(false)
         end
-        list.sort!.reject! { |e| is_help_command? e }
+        list.reject! { |e| is_help_command? e }
+        list.sort!.sort_by!(&custom_order)
+
+        list.reject! { |e| is_help_command? e }
 
         shell.say "Commands:"
         shell.print_table(list, indent: 2, truncate: true)
@@ -55,6 +58,14 @@ module SinatraCli
         end
 
         super(meth, given_args, given_opts, config)
+      end
+
+      # Allow classes that inherit from Cli to define a proc that #sort_by!
+      # will use to sort help output. If not defined, nil will be passed
+      # and #sort_by! will simply pass on an unchanged enumerator.
+      #
+      def custom_order
+        nil
       end
     end
 

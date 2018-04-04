@@ -1,5 +1,4 @@
 # SinatraCli
-- Custom sort
 - Gemable module should probably be Gemfile class instead
 - Write tests
 - API option
