@@ -6,19 +6,6 @@ module SinatraCli
     include Generators
 
     class << self
-      # On failure, let the shell or parent process know that the process
-      # has failed.
-      #
-      def exit_on_failure?
-        true
-      end
-
-      # Set folder where template files are located.
-      #
-      def source_root
-        File.join(SinatraCli.root, "templates")
-      end
-
       # Overwrite the Thor help command to allow custom sorting and remove
       # the help command itself from the output. Instead let users know
       # they can call the `--help` option after any command to get more
@@ -32,8 +19,6 @@ module SinatraCli
         list.reject! { |e| is_help_command? e }
         list.sort!.sort_by!(&custom_order)
 
-        list.reject! { |e| is_help_command? e }
-
         shell.say "Commands:"
         shell.print_table(list, indent: 2, truncate: true)
         shell.say
@@ -41,11 +26,26 @@ module SinatraCli
         shell.say "Run commands with -h or --help for more information."
       end
 
+      protected
+
+      # On failure, let the shell or parent process know that the process
+      # has failed.
+      #
+      def exit_on_failure?
+        true
+      end
+
+      # Set folder where template files are located.
+      #
+      def source_root
+        File.join(SinatraCli.root, "templates")
+      end
+
+      # Returns true if the the given command is a help command
+      #
       def is_help_command?(command_output)
         command_output.first.end_with? "help [COMMAND]"
       end
-
-      protected
 
       # Monkey patch the Thor#dispatch method to allow users to call
       # `sinatra command --help` instead of `sinatra help command`,
