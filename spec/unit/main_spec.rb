@@ -25,7 +25,16 @@ module SinatraCli
       end
 
       it "prints instructions" do
-        expect { subject.new("new_project") }.to output(/sinatra server/).to_stdout
+        expect { subject.new("new_project") }.to output(/Success!/).to_stdout
+      end
+    end
+
+    describe "#generate" do
+      it "connects to the generate subcommand" do
+        # Look for "rspec generate" instead of "sinatra generate," because
+        # Thor's help output is based on the file that started the proceess.
+        expect { subject.generate }
+          .to output(/(Commands:)(\s+)(rspec generate)/).to_stdout
       end
     end
 

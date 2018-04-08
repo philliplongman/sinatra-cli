@@ -10,8 +10,8 @@ module TestHelper
   # returning themselves
   #
   def stub_generator(name)
-    klass = "SinatraCli::Generators::#{name.to_s.capitalize}".constantize
-
+    base_name = (name =~ /rspec/i) ? "RSpec" : name.to_s.camelize
+    klass = "SinatraCli::Generators::#{base_name}".constantize
     allow_any_instance_of(klass).to receive(:generate) { |instance| instance }
   end
 
