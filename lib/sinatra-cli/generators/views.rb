@@ -21,13 +21,15 @@ module SinatraCli
         destination_root = app_path
       end
 
-      def config
-        { app_name: camelized_name }
-      end
-
       def generate
         copy_templates from: template_name, to: File.join(app_path, views_path)
         self
+      end
+
+      private
+
+      def template_variables
+        { app_name: camelized_name }
       end
 
     end

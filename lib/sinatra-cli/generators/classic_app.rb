@@ -20,16 +20,15 @@ module SinatraCli
         @app_path = app_path
       end
 
-      def config
-        { app_name: camelized_name }
-      end
-
-      # Copy template files from `templates/classic_app` and return self
-      # so the shell output can reference it.
-      #
       def generate
         copy_templates
         self
+      end
+
+      private
+
+      def template_variables
+        { app_name: camelized_name }
       end
 
     end

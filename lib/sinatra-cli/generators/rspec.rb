@@ -22,16 +22,16 @@ module SinatraCli
         destination_root = app_path
       end
 
-      def config
-        { app_name: camelized_name }
-      end
-
       def generate
         copy_templates from: template_name
         add_gems test_gems, group: :test
         bundle_gems
         replace_readme_section :testing, with_text: readme_text
         self
+      end
+
+      def template_variables
+        { app_name: camelized_name }
       end
 
       private

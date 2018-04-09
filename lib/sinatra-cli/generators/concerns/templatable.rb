@@ -30,16 +30,18 @@ module SinatraCli
           @app_path_name ||= File.basename app_path
         end
 
-        # Return snake-case name of current class, with namespaces removed.
-        #
-        def generator_name
-          @generator_name ||= self.class.name.demodulize.underscore
-        end
-
         # Return absolute path of app_path
         #
         def absolute_app_path
           File.absolute_path app_path
+        end
+
+        private
+
+        # Return snake-case name of current class, with namespaces removed.
+        #
+        def generator_name
+          @generator_name ||= self.class.name.demodulize.underscore
         end
 
         # Return template language to use for views. Default ERB.
@@ -56,7 +58,13 @@ module SinatraCli
         # can be passed to them through the `config` hash.
         #
         def copy_templates(from: generator_name, to: app_path)
-          cli.directory from, to, config
+          cli.directory from, to, template_variables
+        end
+
+        # Return an empty hash unless overwritten in the class.
+        #
+        def template_variables
+          {}
         end
 
         # Look for section in the readme between two HTML comment tags and

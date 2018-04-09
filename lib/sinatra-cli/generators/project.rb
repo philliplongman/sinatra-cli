@@ -19,10 +19,6 @@ module SinatraCli
         destination_root = app_path
       end
 
-      def config
-        {}
-      end
-
       def generate
         create_directory
         run_generators
@@ -30,6 +26,10 @@ module SinatraCli
       end
 
       private
+
+      def template_variables
+        {}
+      end
 
       def create_directory
         cli.empty_directory app_path_name unless app_path_exist?
