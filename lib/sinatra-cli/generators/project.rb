@@ -15,7 +15,7 @@ module SinatraCli
 
       def initialize(cli:, app_path:)
         @cli = cli
-        @app_path = app_path.sub(/^\.$/, Dir.pwd)
+        @app_path = app_path
         destination_root = app_path
       end
 
@@ -36,7 +36,7 @@ module SinatraCli
       end
 
       def app_path_exist?
-        app_path == Dir.pwd || Dir.exist?(app_path_basename)
+        (app_path == ".") || (app_path == Dir.pwd) || Dir.exist?(app_path_basename)
       end
 
       def run_generators

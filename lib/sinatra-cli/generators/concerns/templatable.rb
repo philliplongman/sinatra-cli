@@ -23,14 +23,13 @@ module SinatraCli
           @camelized_name ||= underscored_name.camelize
         end
 
-        # Return name of created folder, or current folder if "." was
-        # specified as app_path.
+        # Return base name of app_path.
         #
         def app_path_basename
-          @app_path_basename ||= File.basename app_path
+          @app_path_basename ||= File.basename absolute_app_path
         end
 
-        # Return absolute path of app_path
+        # Return absolute path of app_path.
         #
         def absolute_app_path
           File.absolute_path app_path
