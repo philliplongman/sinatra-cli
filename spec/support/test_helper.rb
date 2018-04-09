@@ -1,5 +1,14 @@
 module TestHelper
 
+  # Clear the tmp directory before and after a test runs.
+  #
+  def clear_temp_files
+    Dir.mkdir "tmp" unless Dir.exist? "tmp"
+    Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
+    yield
+    Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
+  end
+
   # Return regex to match the given order of commands when output by help
   #
   def command_order(*commands)
@@ -15,29 +24,30 @@ module TestHelper
     allow_any_instance_of(klass).to receive(:generate) { |instance| instance }
   end
 
-  # Perform the block without outputing to stderr and stdout
+  # Perform the block without outputing to stderr and stdout.
+  # Interferes with Pry.
   #
   def suppress_output(&block)
-    @original_stderr = $stderr
-    @original_stdout = $stdout
-
-    $stderr = $stdout = StringIO.new
-
-    yield(block)
-
-    $stderr = @original_stderr
-    $stdout = @original_stdout
-    @original_stderr = nil
-    @original_stdout = nil
+    orig_stderr = $stderr.clone
+    orig_stdout = $stdout.clone
+    $stderr.reopen File.new("/dev/null", "w")
+    $stdout.reopen File.new("/dev/null", "w")
+    yield
+  rescue Exception => e
+    $stdout.reopen orig_stdout
+    $stderr.reopen orig_stderr
+    raise e
+  ensure
+    $stdout.reopen orig_stdout
+    $stderr.reopen orig_stderr
   end
 
-  # Clear the tmp directory before and after a test runs.
-  #
-  def clear_temp_files
-    Dir.mkdir "tmp" unless Dir.exist? "tmp"
-    Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
-    yield
-    Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
+  def generator_output
+    glob = Dir.glob("**/*", File::FNM_DOTMATCH, base: "tmp")
+
+    glob.sort.reject do |path|
+      File.directory? File.expand_path(path, "tmp")
+    end
   end
 
 end
