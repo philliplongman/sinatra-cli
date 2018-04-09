@@ -42,12 +42,12 @@ module TestHelper
     $stderr.reopen orig_stderr
   end
 
-  def generator_output
-    glob = Dir.glob("**/*", File::FNM_DOTMATCH, base: "tmp")
-
-    glob.sort.reject do |path|
-      File.directory? File.expand_path(path, "tmp")
-    end
-  end
+  # def generator_output
+  #   glob = Dir.glob("**/*", File::FNM_DOTMATCH, base: "tmp")
+  #
+  #   glob.sort.reject do |path|
+  #     File.directory? File.expand_path(path, "tmp")
+  #   end
+  # end
 
 end
