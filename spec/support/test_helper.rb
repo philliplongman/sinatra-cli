@@ -31,4 +31,13 @@ module TestHelper
     @original_stdout = nil
   end
 
+  # Clear the tmp directory before and after a test runs.
+  #
+  def clear_temp_files
+    Dir.mkdir "tmp" unless Dir.exist? "tmp"
+    Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
+    yield
+    Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
+  end
+
 end
