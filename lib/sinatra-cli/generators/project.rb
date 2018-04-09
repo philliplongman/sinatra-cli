@@ -32,11 +32,11 @@ module SinatraCli
       end
 
       def create_directory
-        cli.empty_directory app_path_name unless app_path_exist?
+        cli.empty_directory app_path_basename unless app_path_exist?
       end
 
       def app_path_exist?
-        app_path == Dir.pwd || Dir.exist?(app_path_name)
+        app_path == Dir.pwd || Dir.exist?(app_path_basename)
       end
 
       def run_generators

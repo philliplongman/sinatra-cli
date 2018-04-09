@@ -13,7 +13,7 @@ module SinatraCli
         # Return snake-case name of app.
         #
         def underscored_name
-          @underscored_name ||= app_path_name.underscore
+          @underscored_name ||= app_path_basename.underscore
         end
 
         # Return camel-case name of app. Must go through snake case first,
@@ -26,8 +26,8 @@ module SinatraCli
         # Return name of created folder, or current folder if "." was
         # specified as app_path.
         #
-        def app_path_name
-          @app_path_name ||= File.basename app_path
+        def app_path_basename
+          @app_path_basename ||= File.basename app_path
         end
 
         # Return absolute path of app_path
