@@ -8,13 +8,13 @@ RSpec::Matchers.define :generate_files do |*expected|
   #   expect(generator).not_to generate_files("file", "other/file")
   #   expect(generator).to generate_files.from_template(:template)
   # ------------------------------------------------------------------
-  attr_reader :expected_files
+  attr_reader :destination, :expected_files
 
   match do |generator|
     generator.generate
 
     @expected_files ||= Array(expected)
-    @actual = temp_files
+    @actual = temp_files(base: destination)
 
     return false if actual.empty?
     expected_files - actual == []
@@ -22,6 +22,10 @@ RSpec::Matchers.define :generate_files do |*expected|
 
   chain :from_template do |template|
     @expected_files = template_files(template).map{ |e| e.chomp(".tt") }
+  end
+
+  chain :in do |destination|
+    @destination = destination
   end
 
   failure_message do |actual|
@@ -46,14 +50,16 @@ RSpec::Matchers.define :generate_files do |*expected|
     end
   end
 
-  def temp_files
-    Dir.glob("**/*", File::FNM_DOTMATCH, base: "tmp").sort.reject do |path|
+  def temp_files(base: nil)
+    base = File.join("tmp", base.to_s)
+
+    Dir.glob("**/*", File::FNM_DOTMATCH, base: base).sort.reject do |path|
       path.end_with?("/.", "/..") || path == "." || path == ".."
     end
   end
 
   def template_files(template)
-    base = "#{SinatraCli.root}/templates/#{template}"
+    base = File.join(SinatraCli.root, "templates", template.to_s)
 
     Dir.glob("**/*", File::FNM_DOTMATCH, base: base).sort.reject do |path|
       path.end_with?("/.", "/..") || path == "." || path == ".."
