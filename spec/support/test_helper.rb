@@ -1,11 +1,14 @@
 module TestHelper
 
-  # Clear the tmp directory before and after a test runs.
+  # Clear the tmp directory. If a block is passed, do it before and after.
   #
   def clear_temp_files
     Dir.mkdir "tmp" unless Dir.exist? "tmp"
-    Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
-    yield
+    if block_given?
+      Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
+      yield
+    end
+  ensure
     Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
   end
 
@@ -41,13 +44,5 @@ module TestHelper
     $stdout.reopen orig_stdout
     $stderr.reopen orig_stderr
   end
-
-  # def generator_output
-  #   glob = Dir.glob("**/*", File::FNM_DOTMATCH, base: "tmp")
-  #
-  #   glob.sort.reject do |path|
-  #     File.directory? File.expand_path(path, "tmp")
-  #   end
-  # end
 
 end
