@@ -10,6 +10,10 @@ module SinatraCli
       it "copies the classic app template" do
         expect(subject).to generate_files.from_template :classic_app
       end
+
+      it "returns self" do
+        expect(subject.generate).to eq subject
+      end
     end
 
   end

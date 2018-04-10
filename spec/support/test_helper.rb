@@ -18,6 +18,12 @@ module TestHelper
     Regexp.new commands.map { |e| ".+#{e}.+#.+\n" }.join
   end
 
+  # Return the contents of the Gemfile from the tmp folder
+  #
+  def gemfile
+    File.read("tmp/Gemfile")
+  end
+
   # Prevent generator instances from actually running, while still
   # returning themselves
   #
