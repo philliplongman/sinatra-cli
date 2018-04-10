@@ -1,5 +1,13 @@
 RSpec::Matchers.define :generate_files do |*expected|
-
+  # ------------------------------------------------------------------
+  # Custome matcher to match expected output for a given generator to
+  # the contents of the `tmp` folder.
+  #
+  # Examples:
+  #   expect(generator).to generate_files
+  #   expect(generator).not_to generate_files("file", "other/file")
+  #   expect(generator).to generate_files.from_template(:template)
+  # ------------------------------------------------------------------
   attr_reader :expected_files
 
   match do |generator|
@@ -21,23 +29,21 @@ RSpec::Matchers.define :generate_files do |*expected|
       "expected that generator would produce files"
     else
       <<~MESSAGE
-      expected that generator would produce
-      #{format_list expected_files}
-
-      missing files
-      #{format_list missing_files}
+        expected that generator would produce the following missing files
+        #{format_list missing_files}
       MESSAGE
     end
   end
 
   failure_message_when_negated do |actual|
-    <<~MESSAGE
-      expected that generator would not produce
-      #{format_list expected_files}
-
-      unexpected files
-      #{format_list unexpected_files}
-    MESSAGE
+    if expected_files.empty?
+      "expected that generator would not produce files"
+    else
+      <<~MESSAGE
+        expected that generator would not produce the following present files
+        #{format_list unexpected_files}
+      MESSAGE
+    end
   end
 
   def temp_files
