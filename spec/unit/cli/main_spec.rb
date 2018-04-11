@@ -12,27 +12,25 @@ module SinatraCli
     end
 
     describe "#new" do
-      before :each do
-        stub_generator(:project)
-      end
+      let(:generator) { generator_spy :project }
 
       it "generates a project" do
         suppress_output do
-          expect_any_instance_of(Generators::Project).to receive(:generate)
-
-          subject.new("new_project")
+          subject.new("new_project", generator: generator)
+          expect(generator).to have_received :generate
         end
       end
 
       it "prints instructions" do
-        expect { subject.new("new_project") }.to output(/Success!/).to_stdout
+        expect { subject.new("new_project", generator: generator) }.to output(/Success!/).to_stdout
       end
     end
 
     describe "#generate" do
       it "connects to the generate subcommand" do
-        # Look for "rspec generate" instead of "sinatra generate," because
-        # Thor's help output is based on the file that started the proceess.
+        # Search help output for "rspec generate," not "sinatra generate,"
+        # because Thor's help output is based on the file that started the
+        # proceess.
         expect { subject.generate }
           .to output(/(Commands:)(\s+)(rspec generate)/).to_stdout
       end

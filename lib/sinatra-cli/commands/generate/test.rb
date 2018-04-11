@@ -7,8 +7,8 @@ module SinatraCli
     # instructions how to start the tests. RSpec is the only testing
     # framework currently supported.
     #
-    def tests
-      app = RSpec.new(cli: self).generate
+    def tests(generator: RSpec.new(cli: self))
+      app = generator.generate
       say <<~SAY
 
         Success! RSpec and Capybara have been installed. Put your tests in #{app.underscored_name}/spec/

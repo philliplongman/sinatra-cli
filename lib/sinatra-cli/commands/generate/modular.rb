@@ -15,8 +15,8 @@ module SinatraCli
     # and output instructions how to start the result. ERB views will be
     # assumed unless Slim or Haml is specified.
     #
-    def modular
-      app = ModularApp.new(cli: self).generate
+    def modular(generator: ModularApp.new(cli: self))
+      app = generator.generate
       say <<~SAY
 
         Success! Created #{app.camelized_name} at #{app.absolute_app_path}.

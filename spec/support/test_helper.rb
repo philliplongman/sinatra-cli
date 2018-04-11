@@ -24,13 +24,21 @@ module TestHelper
     File.read("tmp/Gemfile")
   end
 
-  # Prevent generator instances from actually running, while still
-  # returning themselves
+  # Mock a spy for the given generator
   #
-  def stub_generator(name)
+  def generator_spy(name)
     base_name = (name =~ /rspec/i) ? "RSpec" : name.to_s.camelize
-    klass = "SinatraCli::Generators::#{base_name}".constantize
-    allow_any_instance_of(klass).to receive(:generate) { |instance| instance }
+    klass = "SinatraCli::Generators::#{base_name}"
+
+    spy(klass).tap do |generator|
+      allow(generator).to receive_messages(
+        generate:           generator,
+        absolute_app_path:  "",
+        app_path_basename:  "",
+        camelized_name:     "",
+        underscored_name:   ""
+      )
+    end
   end
 
   # Perform the block without outputing to stderr and stdout.
@@ -41,7 +49,7 @@ module TestHelper
     orig_stdout = $stdout.clone
     $stderr.reopen File.new("/dev/null", "w")
     $stdout.reopen File.new("/dev/null", "w")
-    yield
+    yield block
   rescue Exception => e
     $stdout.reopen orig_stdout
     $stderr.reopen orig_stderr

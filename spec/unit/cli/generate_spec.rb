@@ -12,56 +12,47 @@ module SinatraCli
     end
 
     describe "#modular" do
-      before :each do
-        stub_generator(:modular_app)
-      end
+      let(:generator) { generator_spy :modular_app }
 
       it "generates a modular-style app" do
         suppress_output do
-          expect_any_instance_of(Generators::ModularApp).to receive(:generate)
-
-          subject.modular
+          subject.modular(generator: generator)
+          expect(generator).to have_received :generate
         end
       end
 
       it "prints instructions" do
-        expect { subject.modular }.to output(/Success!/).to_stdout
+        expect { subject.modular(generator: generator) }.to output(/Success!/).to_stdout
       end
     end
 
     describe "#classic" do
-      before :each do
-        stub_generator(:classic_app)
-      end
+      let(:generator) { generator_spy :classic_app }
 
       it "generates a classic-style app" do
         suppress_output do
-          expect_any_instance_of(Generators::ClassicApp).to receive(:generate)
-
-          subject.classic
+          subject.classic(generator: generator)
+          expect(generator).to have_received :generate
         end
       end
 
       it "prints instructions" do
-        expect { subject.classic }.to output(/Success!/).to_stdout
+        expect { subject.classic(generator: generator) }.to output(/Success!/).to_stdout
       end
     end
 
     describe "#tests" do
-      before :each do
-        stub_generator(:rspec)
-      end
+      let(:generator) { generator_spy :rspec }
 
       it "generates an RSpec installation" do
         suppress_output do
-          expect_any_instance_of(Generators::RSpec).to receive(:generate)
-
-          subject.tests
+          subject.tests(generator: generator)
+          expect(generator).to have_received :generate
         end
       end
 
       it "prints instructions" do
-        expect { subject.tests }.to output(/Success!/).to_stdout
+        expect { subject.tests(generator: generator) }.to output(/Success!/).to_stdout
       end
     end
 

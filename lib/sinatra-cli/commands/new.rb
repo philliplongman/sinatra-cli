@@ -18,8 +18,8 @@ module SinatraCli
     # all of the default configurations (modified by any passed options).
     # Print instructions about how to use the other gem commands.
     #
-    def new(app_path)
-      app = Project.new(cli: self, app_path: app_path).generate
+    def new(app_path, generator: Project.new(cli: self, app_path: app_path))
+      app = generator.generate
       say <<~SAY
 
         Success! Created #{app.camelized_name} at #{app.absolute_app_path}
