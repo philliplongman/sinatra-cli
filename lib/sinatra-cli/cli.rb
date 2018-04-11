@@ -5,6 +5,8 @@ module SinatraCli
     include Thor::Actions
     include Generators
 
+    add_runtime_options!
+
     class << self
       # Overwrite the Thor help command to allow custom sorting and remove
       # the help command itself from the output. Instead let users know
@@ -72,6 +74,24 @@ module SinatraCli
     map %w(-h --help) => :help
 
     no_commands do
+      def quiet?
+        !!options[:quiet]
+      end
+
+      # Overwrite run to automatically capture shell output if --quiet
+      # was called (unless `capture: false` is explicitly passed).
+      #
+      def run(command, config = {})
+        config[:capture] ||= quiet?
+        super(command, config)
+      end
+
+      # Overwrite say to respect the --quiet flag.
+      #
+      def say(message = "", color = nil, force_new_line = (message.to_s !~ /( |\t)\Z/))
+        super(message, color, force_new_line) unless quiet?
+      end
+
       # Stolen from Bundler. Call `which` for the given executable.
       #
       def which(executable)
