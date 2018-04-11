@@ -1,10 +1,10 @@
 module SinatraCli
   RSpec.describe Generators::ClassicApp do
 
-    subject { Generators::ClassicApp.new(cli: Generate.new, app_path: "tmp") }
+    let(:subject) { Generators::ClassicApp.new(cli: cli, app_path: "tmp") }
+    let(:cli)     { Generate.new([], { quiet: true }) }
 
     around(:each) { |example| clear_temp_files &example }
-    around(:each) { |example| suppress_output &example }
 
     describe "#generate" do
       it "copies the classic app template" do

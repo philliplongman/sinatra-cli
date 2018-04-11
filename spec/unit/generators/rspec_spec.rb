@@ -3,10 +3,10 @@ require "fileutils"
 module SinatraCli
   RSpec.describe Generators::RSpec do
 
-    subject { Generators::RSpec.new(cli: Generate.new, app_path: "tmp") }
+    let(:subject) { Generators::RSpec.new(cli: cli, app_path: "tmp") }
+    let(:cli)     { Generate.new([], { quiet: true }) }
 
     around(:each) { |example| clear_temp_files &example }
-    around(:each) { |example| suppress_output &example }
 
     describe "#generate" do
 

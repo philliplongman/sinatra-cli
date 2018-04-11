@@ -1,10 +1,10 @@
 module SinatraCli
   RSpec.describe Generators::GitRepo do
 
-    subject { Generators::GitRepo.new(cli: Generate.new, app_path: "tmp") }
+    let(:subject) { Generators::GitRepo.new(cli: cli, app_path: "tmp") }
+    let(:cli)     { Generate.new([], { quiet: true }) }
 
     around(:each) { |example| clear_temp_files &example }
-    around(:each) { |example| suppress_output &example }
 
     describe "#generate" do
       it "creates a git repo" do

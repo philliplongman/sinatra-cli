@@ -41,22 +41,4 @@ module TestHelper
     end
   end
 
-  # Perform the block without outputing to stderr and stdout.
-  # Interferes with Pry.
-  #
-  def suppress_output(&block)
-    orig_stderr = $stderr.clone
-    orig_stdout = $stdout.clone
-    $stderr.reopen File.new("/dev/null", "w")
-    $stdout.reopen File.new("/dev/null", "w")
-    yield block
-  rescue Exception => e
-    $stdout.reopen orig_stdout
-    $stderr.reopen orig_stderr
-    raise e
-  ensure
-    $stdout.reopen orig_stdout
-    $stderr.reopen orig_stderr
-  end
-
 end

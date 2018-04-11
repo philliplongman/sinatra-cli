@@ -1,27 +1,27 @@
 module SinatraCli
   RSpec.describe Generators::Views do
 
-    subject { Generators::Views.new(cli: Generate.new, app_path: "tmp") }
+    let(:subject) { Generators::Views.new(cli: cli, app_path: "tmp") }
+    let(:cli)     { Generate.new([], { quiet: true }) }
 
     around(:each) { |example| clear_temp_files &example }
-    around(:each) { |example| suppress_output &example }
 
     describe "#generate" do
       it "copies the ERB views template" do
         expect(subject).to generate_files.from_template(:erb_views).in("app")
       end
 
-      it "can generate Haml views instead of ERB" do
-        cli = Generate.new([], { haml: "" })
-        subject = Generators::Views.new(cli: cli, app_path: "tmp")
+      it "can generate Haml or Slim views instead of ERB" do
+        haml_cli = Generate.new([], { haml: "", quiet: true })
+        slim_cli = Generate.new([], { slim: "", quiet: true })
 
+        subject.cli = haml_cli
         expect(subject).to generate_files.from_template(:haml_views).in("app")
-      end
 
-      it "can generate Slim views instead of ERB" do
-        cli = Generate.new([], { slim: "" })
-        subject = Generators::Views.new(cli: cli, app_path: "tmp")
+        clear_temp_files
 
+        subject.cli = slim_cli
+        subject.generate
         expect(subject).to generate_files.from_template(:slim_views).in("app")
       end
 
