@@ -13,7 +13,7 @@ module SinatraCli
       include Templatable
       include Gemable
 
-      attr_reader :cli, :app_path, :template_name
+      attr_accessor :cli, :app_path, :template_name
 
       def initialize(cli:, app_path: Dir.pwd, tests_path: "spec")
         @cli = cli

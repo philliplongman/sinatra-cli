@@ -11,13 +11,12 @@ module SinatraCli
       # --------------------------------------------------------------
       include Templatable
 
-      attr_reader :cli, :app_path, :views_path, :template_name
+      attr_accessor :cli, :app_path, :views_path
 
       def initialize(cli:, app_path: Dir.pwd, views_path: "app")
         @cli = cli
         @app_path = app_path
         @views_path = views_path
-        @template_name = view_language + "_views"
         destination_root = app_path
       end
 
@@ -30,6 +29,10 @@ module SinatraCli
 
       def template_variables
         { app_name: camelized_name }
+      end
+
+      def template_name
+        "#{view_language}_views"
       end
 
     end

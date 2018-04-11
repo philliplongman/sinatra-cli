@@ -13,7 +13,7 @@ module SinatraCli
       # ----------------------------------------------------------------------
       include Templatable
 
-      attr_reader :cli, :app_path
+      attr_accessor :cli, :app_path
 
       def initialize(cli:, app_path: Dir.pwd)
         @cli = cli
