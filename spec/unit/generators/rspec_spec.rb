@@ -45,18 +45,19 @@ module SinatraCli
       it "updates the readme" do
         FileUtils.copy "spec/fixtures/readme.md", "tmp/readme.md"
 
-        readme = File.read "tmp/readme.md"
-        original_section =
-          readme.match(/(?<=<!-- testing -->\n).*(?=<!-- testing -->)/m).to_s
+        testing_tags = /(?<=<!-- testing -->\n).*(?=<!-- testing -->)/m
+
+        original_readme = File.read "tmp/readme.md"
+        original_section = original_readme.match(testing_tags).to_s
 
         subject.generate
 
-        readme = File.read "tmp/readme.md"
-        new_section =
-          readme.match(/(?<=<!-- testing -->\n).*(?=<!-- testing -->)/m).to_s
+        updated_readme = File.read "tmp/readme.md"
+        new_section = updated_readme.match(testing_tags).to_s
 
-        expect(readme).to include new_section
-        expect(readme).not_to include original_section
+        expect(updated_readme).not_to eq original_readme
+        expect(updated_readme).to include new_section
+        expect(updated_readme).not_to include original_section
       end
 
       it "returns self" do

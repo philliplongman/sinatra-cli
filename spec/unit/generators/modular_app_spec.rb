@@ -27,11 +27,12 @@ module SinatraCli
       end
 
       it "generates views" do
-        view_generator = instance_double("Generators::Views")
-        expect(view_generator).to receive(:generate)
-        allow(Generators::Views).to receive(:new) { view_generator }
+        views = generator_spy :views
+        allow(Generators::Views).to receive(:new) { views }
 
         subject.generate
+
+        expect(views).to have_received(:generate)
       end
 
       it "bundles the gems" do
