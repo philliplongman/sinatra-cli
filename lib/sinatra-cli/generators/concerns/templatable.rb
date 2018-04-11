@@ -70,6 +70,7 @@ module SinatraCli
         # replace it with given text.
         #
         def replace_readme_section(section, with_text:)
+          return unless File.exist? readme
           cli.gsub_file readme, match_readme_section(section), with_text
         end
 
