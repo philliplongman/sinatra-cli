@@ -21,7 +21,7 @@ module SinatraCli
 
       it "copies the RSpec template" do
         subject.generate
-        expect("tmp").to have_files.from_template(:rspec)
+        expect("tmp").to have_files.from_template :rspec
       end
 
       it "adds gems to the test group" do
