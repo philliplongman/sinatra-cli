@@ -6,7 +6,7 @@ module SinatraCli
     let(:subject) { Generators::RSpec.new(cli: cli, app_path: "tmp") }
     let(:cli)     { Generate.new([], { quiet: true }) }
 
-    around(:each) { |example| clear_temp_files &example }
+    around(:each) { |example| clear_temp_files! &example }
 
     describe "#generate" do
 

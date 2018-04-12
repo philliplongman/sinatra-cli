@@ -4,7 +4,7 @@ module SinatraCli
     let(:subject) { Generators::ModularApp.new(cli: cli, app_path: "tmp") }
     let(:cli)     { Generate.new([], { quiet: true }) }
 
-    around(:each) { |example| clear_temp_files &example }
+    around(:each) { |example| clear_temp_files! &example }
 
     describe "#generate" do
       it "copies the modular app template" do
@@ -19,7 +19,7 @@ module SinatraCli
         subject.generate
         expect(gemfile).to include %(gem "haml")
 
-        clear_temp_files
+        clear_temp_files!
 
         subject.cli = slim_cli
         subject.generate

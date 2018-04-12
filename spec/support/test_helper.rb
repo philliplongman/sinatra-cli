@@ -2,7 +2,7 @@ module TestHelper
 
   # Clear the tmp directory. If a block is passed, do it before and after.
   #
-  def clear_temp_files
+  def clear_temp_files!
     Dir.mkdir "tmp" unless Dir.exist? "tmp"
     if block_given?
       Dir.children("tmp").each { |e| FileUtils.rm_r File.join("tmp", e) }
