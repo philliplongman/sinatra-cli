@@ -20,7 +20,8 @@ module SinatraCli
       end
 
       it "copies the RSpec template" do
-        expect(subject).to generate_files.from_template(:rspec)
+        subject.generate
+        expect("tmp").to have_files.from_template(:rspec)
       end
 
       it "adds gems to the test group" do
@@ -39,7 +40,8 @@ module SinatraCli
       end
 
       it "bundles the gems" do
-        expect(subject).to generate_files "Gemfile.lock"
+        subject.generate
+        expect("tmp").to have_files "Gemfile.lock"
       end
 
       it "updates the readme" do

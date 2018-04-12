@@ -8,7 +8,8 @@ module SinatraCli
 
     describe "#generate" do
       it "creates a git repo" do
-        expect(subject).to generate_files ".git"
+        subject.generate
+        expect("tmp").to have_files ".git"
       end
 
       it "doesn't run if git isn't present" do
@@ -16,7 +17,8 @@ module SinatraCli
         allow(cli).to receive(:which).and_return(nil)
         subject = Generators::GitRepo.new(cli: cli, app_path: "tmp")
 
-        expect(subject).not_to generate_files ".git"
+        subject.generate
+        expect("tmp").not_to have_files ".git"
       end
     end
 

@@ -8,7 +8,8 @@ module SinatraCli
 
     describe "#generate" do
       it "copies the modular app template" do
-        expect(subject).to generate_files.from_template :modular_app
+        subject.generate
+        expect("tmp").to have_files.from_template :modular_app
       end
 
       it "adds the gem for the view language" do
@@ -36,7 +37,8 @@ module SinatraCli
       end
 
       it "bundles the gems" do
-        expect(subject).to generate_files "Gemfile.lock"
+        subject.generate
+        expect("tmp").to have_files "Gemfile.lock"
       end
 
       it "returns self" do

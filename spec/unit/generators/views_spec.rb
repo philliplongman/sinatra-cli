@@ -8,7 +8,8 @@ module SinatraCli
 
     describe "#generate" do
       it "copies the ERB views template" do
-        expect(subject).to generate_files.from_template(:erb_views).in("app")
+        subject.generate
+        expect("tmp/app").to have_files.from_template(:erb_views)
       end
 
       it "can generate Haml or Slim views instead of ERB" do
@@ -16,13 +17,14 @@ module SinatraCli
         slim_cli = Generate.new([], { slim: "", quiet: true })
 
         subject.cli = haml_cli
-        expect(subject).to generate_files.from_template(:haml_views).in("app")
+        subject.generate
+        expect("tmp/app").to have_files.from_template(:haml_views)
 
         clear_temp_files!
 
         subject.cli = slim_cli
         subject.generate
-        expect(subject).to generate_files.from_template(:slim_views).in("app")
+        expect("tmp/app").to have_files.from_template(:slim_views)
       end
 
       it "returns self" do

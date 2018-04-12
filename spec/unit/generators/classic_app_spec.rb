@@ -8,7 +8,8 @@ module SinatraCli
 
     describe "#generate" do
       it "copies the classic app template" do
-        expect(subject).to generate_files.from_template :classic_app
+        subject.generate
+        expect("tmp").to have_files.from_template :classic_app
       end
 
       it "returns self" do
